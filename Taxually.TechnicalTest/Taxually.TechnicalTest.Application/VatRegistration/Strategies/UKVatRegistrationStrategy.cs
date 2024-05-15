@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Taxually.TechnicalTest.Application.Interfaces;
 using Taxually.TechnicalTest.Application.Interfaces.VatRegistration;
 using Taxually.TechnicalTest.Application.VatRegistration;
+using Taxually.TechnicalTest.Domain.Exceptions;
 using Taxually.TechnicalTest.Domain.ValueObjects;
 
 namespace Taxually.TechnicalTest.Strategies
@@ -24,6 +25,12 @@ namespace Taxually.TechnicalTest.Strategies
         {
             try
             {
+                // TODO: Refactor validation to validator classes
+                if (request.Country.ToUpper() != GetSupportedCountry().Code.ToUpper())
+                {
+                    throw new UnsupportedCountryException(request.Country);
+                }
+
                 // TODO: Taxually.TechnicalTest request model should not
                 // depend on the model of the external service -> 
                 // Introduce another model and the corresponding mapping

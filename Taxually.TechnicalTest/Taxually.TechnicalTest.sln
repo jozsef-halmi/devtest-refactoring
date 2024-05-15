@@ -10,11 +10,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxually.TechnicalTest.Application", "Taxually.TechnicalTest.Application\Taxually.TechnicalTest.Application.csproj", "{3F1F458F-F038-4E67-A04C-D5BC202595A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taxually.TechnicalTest.Application", "Taxually.TechnicalTest.Application\Taxually.TechnicalTest.Application.csproj", "{3F1F458F-F038-4E67-A04C-D5BC202595A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxually.TechnicalTest.Domain", "Taxually.TechnicalTest.Domain\Taxually.TechnicalTest.Domain.csproj", "{D0994567-B3BE-418F-A778-7D7349176C98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taxually.TechnicalTest.Domain", "Taxually.TechnicalTest.Domain\Taxually.TechnicalTest.Domain.csproj", "{D0994567-B3BE-418F-A778-7D7349176C98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxually.TechnicalTest.Infrastructure", "Taxually.TechnicalTest.Infrastructure\Taxually.TechnicalTest.Infrastructure.csproj", "{8A57CADB-934A-41EB-979A-E5328532B756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taxually.TechnicalTest.Infrastructure", "Taxually.TechnicalTest.Infrastructure\Taxually.TechnicalTest.Infrastructure.csproj", "{8A57CADB-934A-41EB-979A-E5328532B756}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2394590B-9AC5-4760-BD1F-0AB499893255}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxually.TechnicalTest.Tests", "tests\Taxually.TechnicalTest.Tests\Taxually.TechnicalTest.Tests.csproj", "{F909E3F0-F226-433F-B3FE-129A78E8CD16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxually.TechnicalTest.Application.Tests", "tests\Taxually.TechnicalTest.Application.Tests\Taxually.TechnicalTest.Application.Tests.csproj", "{801B5877-6C36-4447-BA8B-08B04652303B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxually.TechnicalTest.Domain.Tests", "tests\Taxually.TechnicalTest.Domain.Tests\Taxually.TechnicalTest.Domain.Tests.csproj", "{415795CA-3807-408C-85DB-5CD3E0BE15B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxually.TechnicalTest.Infrastructure.Tests", "tests\Taxually.TechnicalTest.Infrastructure.Tests\Taxually.TechnicalTest.Infrastructure.Tests.csproj", "{C52129CD-E034-4AF7-8E57-0AF8C93FAE52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,9 +48,31 @@ Global
 		{8A57CADB-934A-41EB-979A-E5328532B756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A57CADB-934A-41EB-979A-E5328532B756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A57CADB-934A-41EB-979A-E5328532B756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F909E3F0-F226-433F-B3FE-129A78E8CD16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F909E3F0-F226-433F-B3FE-129A78E8CD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F909E3F0-F226-433F-B3FE-129A78E8CD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F909E3F0-F226-433F-B3FE-129A78E8CD16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{801B5877-6C36-4447-BA8B-08B04652303B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801B5877-6C36-4447-BA8B-08B04652303B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801B5877-6C36-4447-BA8B-08B04652303B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801B5877-6C36-4447-BA8B-08B04652303B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{415795CA-3807-408C-85DB-5CD3E0BE15B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{415795CA-3807-408C-85DB-5CD3E0BE15B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{415795CA-3807-408C-85DB-5CD3E0BE15B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{415795CA-3807-408C-85DB-5CD3E0BE15B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C52129CD-E034-4AF7-8E57-0AF8C93FAE52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C52129CD-E034-4AF7-8E57-0AF8C93FAE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C52129CD-E034-4AF7-8E57-0AF8C93FAE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C52129CD-E034-4AF7-8E57-0AF8C93FAE52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F909E3F0-F226-433F-B3FE-129A78E8CD16} = {2394590B-9AC5-4760-BD1F-0AB499893255}
+		{801B5877-6C36-4447-BA8B-08B04652303B} = {2394590B-9AC5-4760-BD1F-0AB499893255}
+		{415795CA-3807-408C-85DB-5CD3E0BE15B3} = {2394590B-9AC5-4760-BD1F-0AB499893255}
+		{C52129CD-E034-4AF7-8E57-0AF8C93FAE52} = {2394590B-9AC5-4760-BD1F-0AB499893255}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4911BEBF-5EE3-4872-9EE7-772C7BEBF303}

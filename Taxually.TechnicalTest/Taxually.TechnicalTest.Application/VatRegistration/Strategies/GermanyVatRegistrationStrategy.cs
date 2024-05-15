@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 using Taxually.TechnicalTest.Application.Interfaces;
 using Taxually.TechnicalTest.Application.Interfaces.VatRegistration;
 using Taxually.TechnicalTest.Application.VatRegistration;
+using Taxually.TechnicalTest.Domain.Exceptions;
 using Taxually.TechnicalTest.Domain.ValueObjects;
 
 namespace Taxually.TechnicalTest.Strategies
@@ -25,6 +26,12 @@ namespace Taxually.TechnicalTest.Strategies
         {
             try
             {
+                // TODO: Refactor validation to validator classes
+                if (request.Country.ToUpper() != GetSupportedCountry().Code.ToUpper())
+                {
+                    throw new UnsupportedCountryException(request.Country);
+                }
+
                 using var stringwriter = new StringWriter();
                 var xmlSerializer = new XmlSerializer(typeof(VatRegistrationRequest));
                 xmlSerializer.Serialize(stringwriter, request);

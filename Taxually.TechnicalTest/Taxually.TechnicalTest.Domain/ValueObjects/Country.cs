@@ -28,6 +28,10 @@ namespace Taxually.TechnicalTest.Domain.ValueObjects
         public static Country Germany => new("DE");
         public static Country UnitedKingdom => new("UK");
 
+        public override string ToString()
+        {
+            return Code;
+        }
 
         protected static IEnumerable<Country> SupportedCountrys
         {
