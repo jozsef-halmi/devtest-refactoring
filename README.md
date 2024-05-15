@@ -1,4 +1,4 @@
-# Taxually technical test
+# Taxually technical test - Original description
 
 This solution contains an [API endpoint](https://github.com/Taxually/developer-test/blob/main/Taxually.TechnicalTest/Taxually.TechnicalTest/Controllers/VatRegistrationController.cs) to register a company for a VAT number. Different approaches are required based on the country where the company is based:
 
@@ -6,20 +6,46 @@ This solution contains an [API endpoint](https://github.com/Taxually/developer-t
 - French companies must upload a CSV file
 - German companies must upload an XML document
 
-We'd like you to refactor the existing solution with the following in mind:
+The implementation uses the [strategy pattern](https://refactoring.guru/design-patterns/strategy). In order to add support for a new country, the following steps must be done:
+1. Create your implementation under `Taxually.TechnicalTest.Application\VatRegistration\Strategies\YourCountryRegistrationStrategy.cs`, which must implement the interface `IVatRegistrationStrategy`. Return the supported country by `.GetSupportedCountry()`.
+1. Register the new strategy implementation to the DI container. \Taxually.TechnicalTest.Application\DependencyInjection.cs`
+1. Add tests to the `Taxually.TechnicalTest.Application.Tests\VatRegistration` folder.
 
-- Readability
-- Testability
-- Adherance to SOLID principles
+![Strategy pattern](https://refactoring.guru/images/patterns/diagrams/strategy/solution.png?id=0813a174b29a2ed5902d321aba28e5fc "Strategy Pattern")
 
-We'd also like you to add some tests to show us how you'd test your solution, although we aren't expecting exhaustive test coverage.
+Note:
+The manual DI registration can be circumvented with using reflection.
+```
+var strategies = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(type => typeof(IVatRegistrationStrategy).IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract);
 
-We don't expect you to implement the classes for making HTTP calls and putting messages on queues.
+foreach (var strategy in strategies)
+{
+    builder.Services.AddTransient(
+        typeof(IVatRegistrationStrategy), 
+        strategy);
+}
+```
 
-We'd like you to spend not more than a few hours on the exercise.
+# Personal notes
 
-To develop and submit your solution please follow these steps:
+## Architecture
+For my refactoring exercise, I've used the [clean architecture approach](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures#clean-architecture).
+Generally speaking, I find this code organization pattern clean, easy to read and easy to test, but I have to admit that for this tiny task this might feel like an overkill.
 
-1. Create a public repo in your own GitHub account and push the technical test there
-2. Develop your solution and push your changes to your own public GitHub repo
-3. Once you're happy with your solution send us a link to your repo
+## Conditional code execution based on country
+This can be solved in many ways. I've used the strategy pattern, as I believe it is indended to solve such problems, but it could have been solved in many ways, e.g. if it is expected that certain countries will receive a much higher load, the separation can be done on a service level (for example, GermanyRegistration service) which can independently scale. In this way a gateway can route the requests to the corresponding endpoints.
+
+## Use of async-await
+The use of async-await was suboptimal and error-prone throughout the code base, so I've fixed them.
+
+## Configuration
+The configuration values were added to the `appsettings.json` which can have separate values per environments.
+
+## Development ideas
+- Add proper validation and detach it from the VatRegistration logic (Wrote a TODO to the corresponding code part)
+- Error handling
+- Structured logging
+- Refactor so that API request is independent from the 3rd party UK request (Wrote a TODO to the corresponding code part)
+- ...
